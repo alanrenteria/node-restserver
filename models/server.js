@@ -11,7 +11,7 @@ class Server {
         this.usuariosPhat = '/api/usuarios'
 
         // Configuracion del puerto
-        this.port = process.env.PORT
+        this.port = process.env.PORT || 3000
 
         // Middlewares
         this.middlewares()
