@@ -62,13 +62,14 @@ const usuariosPatch = (req, res = response) => {
     })
 }
 const usuariosDelete = async (req, res = response) => {
+    /* Borrado Fisico:
+      const usuario = await Usuario.findByIdAndDelete(id) */
 
+    // Leer id de los parametros
     const { id } = req.params
-    /* Borrado Fisico
-       const usuario = await Usuario.findByIdAndDelete(id) */
-
+    // Cambia el estado a false para simular el borrado
     const usuario = await Usuario.findByIdAndUpdate(id, { estado: false })
-    
+    // Refleja los cambios
     res.json({
         usuario
     })

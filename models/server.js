@@ -7,10 +7,11 @@ class Server {
     constructor() {
         // Crear el servidor de express
         this.app = express()
-        // Nombre de rutas
-        this.usuariosPhat = '/api/usuarios'
         // Configuracion del puerto
         this.port = process.env.PORT
+        // Nombre de rutas
+        this.usuariosPhat = '/api/usuarios'
+        this.authPhat = '/api/auth'
         //Conectar DB
         this.conectarDB()
         // Middlewares
@@ -18,7 +19,7 @@ class Server {
         // Rutas de mi app
         this.routes();
     }
-    async conectarDB(){
+    async conectarDB() {
         await dbConnection()
     }
     middlewares() {
@@ -31,7 +32,8 @@ class Server {
     }
     routes() {
         // Definimos las rutas de la app
-       this.app.use( this.usuariosPhat, require('../routes/usuarios'))
+        this.app.use(this.authPhat, require('../routes/auth'))
+        this.app.use(this.usuariosPhat, require('../routes/usuarios'))
     }
     listen() {
         // Escuchar peticiones
