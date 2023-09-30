@@ -10,8 +10,15 @@ class Server {
         // Configuracion del puerto
         this.port = process.env.PORT
         // Nombre de rutas
-        this.usuariosPhat = '/api/usuarios'
-        this.authPhat = '/api/auth'
+        this.paths = {
+            auth:       '/api/auth',
+            buscar:     '/api/buscar',
+            categorias: '/api/categorias',
+            productos:  '/api/productos',
+            usuarios:   '/api/usuarios'
+        }
+        // this.usuariosPhat = '/api/usuarios'
+        // this.authPhat = '/api/auth'
         //Conectar DB
         this.conectarDB()
         // Middlewares
@@ -32,8 +39,11 @@ class Server {
     }
     routes() {
         // Definimos las rutas de la app
-        this.app.use(this.authPhat, require('../routes/auth'))
-        this.app.use(this.usuariosPhat, require('../routes/usuarios'))
+        this.app.use(this.paths.auth, require('../routes/auth'))
+        this.app.use(this.paths.buscar, require('../routes/buscar'))
+        this.app.use(this.paths.categorias, require('../routes/categorias'))
+        this.app.use(this.paths.productos, require('../routes/productos'))
+        this.app.use(this.paths.usuarios, require('../routes/usuarios'))
     }
     listen() {
         // Escuchar peticiones
