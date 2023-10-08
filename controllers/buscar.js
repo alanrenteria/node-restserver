@@ -2,7 +2,6 @@ const { response } = require("express");
 const { ObjectId } = require("mongoose").Types;
 const { Usuario, Categoria, Producto } = require('../models')
 
-
 const coleccionesPermitidas = [
     'usuarios',
     'categorias',
@@ -84,7 +83,6 @@ const buscarProductos = async (termino = '', res = response) => {
         results: productos
     })
 }
-
 const buscar = (req, res = response) => {
 
     // Extraemos de req.params coleccio y termino
@@ -108,12 +106,8 @@ const buscar = (req, res = response) => {
             return res.status(500).json({
                 msg: 'Se le olvido hacer esta búsqueda'
             })
-
     }
-    // Reflejar cambios
-
 }
-
 module.exports = {
     buscar
 };
